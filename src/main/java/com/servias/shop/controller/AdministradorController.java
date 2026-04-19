@@ -1,15 +1,30 @@
 package com.servias.shop.controller;
 
-import org.springframework.stereotype.Controller;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+import com.servias.shop.repository.ProductoRepository;
+
+@RestController
 @RequestMapping("/administrador")
 public class AdministradorController {
 
-    @GetMapping("")
-    public String home() {
-        return "administrador/home";
+    private final ProductoRepository productoRepository;
+
+    public AdministradorController(ProductoRepository productoRepository) {
+        this.productoRepository = productoRepository;
+    }
+
+    @GetMapping
+    public Map<String, Object> resumen() {
+        Map<String, Object> response = new HashMap<>();
+        response.put("modulo", "administrador");
+        response.put("estado", "ok");
+        response.put("totalProductos", productoRepository.count());
+        return response;
     }
 }

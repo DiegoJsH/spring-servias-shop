@@ -11,58 +11,53 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.servias.shop.model.Producto;
-import com.servias.shop.model.TipoRopa;
-import com.servias.shop.service.ProductoService;
+import com.servias.shop.model.Usuario;
+import com.servias.shop.service.UsuarioService;
 
 @RestController
-@RequestMapping("/productos")
-public class ProductoController {
+@RequestMapping("/usuarios")
+public class UsuarioController {
 
-    private final ProductoService productoService;
+    private final UsuarioService usuarioService;
 
-    public ProductoController(ProductoService productoService) {
-        this.productoService = productoService;
+    public UsuarioController(UsuarioService usuarioService) {
+        this.usuarioService = usuarioService;
     }
 
     @GetMapping
-    public List<Producto> listar(@RequestParam(required = false) TipoRopa tipoRopa) {
-        if (tipoRopa != null) {
-            return productoService.findByTipoRopa(tipoRopa);
-        }
-        return productoService.findAll();
+    public List<Usuario> listar() {
+        return usuarioService.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Producto> obtener(@PathVariable Integer id) {
-        return productoService.get(id)
+    public ResponseEntity<Usuario> obtener(@PathVariable Integer id) {
+        return usuarioService.findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResponseEntity<Producto> crear(@RequestBody Producto producto) {
-        Producto creado = productoService.save(producto);
+    public ResponseEntity<Usuario> crear(@RequestBody Usuario usuario) {
+        Usuario creado = usuarioService.save(usuario);
         return ResponseEntity.status(HttpStatus.CREATED).body(creado);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Producto> actualizar(@PathVariable Integer id, @RequestBody Producto producto) {
-        if (productoService.get(id).isEmpty()) {
+    public ResponseEntity<Usuario> actualizar(@PathVariable Integer id, @RequestBody Usuario usuario) {
+        if (usuarioService.findById(id).isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(productoService.update(id, producto));
+        return ResponseEntity.ok(usuarioService.update(id, usuario));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Integer id) {
-        if (productoService.get(id).isEmpty()) {
+        if (usuarioService.findById(id).isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-        productoService.delete(id);
+        usuarioService.delete(id);
         return ResponseEntity.noContent().build();
     }
 }

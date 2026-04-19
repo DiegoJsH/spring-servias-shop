@@ -1,10 +1,11 @@
 package com.servias.shop.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,21 +20,22 @@ public class Producto {
     private String imagen;
     private Double precio;
     private Integer stock;
-
-    @ManyToOne
-    private Usuario usuario;
+    @Enumerated(EnumType.STRING)
+    private TipoRopa tipoRopa;
+    private String talla;
 
     public Producto() {
     }
 
-    public Producto(String descripcion, Integer id, String imagen, String nombre, Double precio, Integer stock, Usuario usuario) {
+    public Producto(String descripcion, Integer id, String imagen, String nombre, Double precio, Integer stock, TipoRopa tipoRopa, String talla) {
         this.descripcion = descripcion;
         this.id = id;
         this.imagen = imagen;
         this.nombre = nombre;
         this.precio = precio;
         this.stock = stock;
-        this.usuario = usuario;
+        this.tipoRopa = tipoRopa;
+        this.talla = talla;
     }
 
     public Integer getId() {
@@ -84,12 +86,20 @@ public class Producto {
         this.stock = stock;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public TipoRopa getTipoRopa() {
+        return tipoRopa;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setTipoRopa(TipoRopa tipoRopa) {
+        this.tipoRopa = tipoRopa;
+    }
+
+    public String getTalla() {
+        return talla;
+    }
+
+    public void setTalla(String talla) {
+        this.talla = talla;
     }
 
     @Override
@@ -102,6 +112,8 @@ public class Producto {
         sb.append(", imagen=").append(imagen);
         sb.append(", precio=").append(precio);
         sb.append(", stock=").append(stock);
+        sb.append(", tipoRopa=").append(tipoRopa);
+        sb.append(", talla=").append(talla);
         sb.append('}');
         return sb.toString();
     }

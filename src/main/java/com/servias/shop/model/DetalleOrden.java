@@ -1,15 +1,16 @@
 package com.servias.shop.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "detalle")
+@Table(name = "detalle_orden")
 public class DetalleOrden {
 
     @Id
@@ -20,7 +21,8 @@ public class DetalleOrden {
     private double precio;
     private double total;
 
-    @OneToOne
+    @JsonIgnore
+    @ManyToOne
     private Orden orden;
 
     @ManyToOne

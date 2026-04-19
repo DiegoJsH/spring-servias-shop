@@ -2,6 +2,9 @@ package com.servias.shop.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,11 +25,10 @@ public class Usuario {
     private String direccion;
     private String telefono;
     private String tipo;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
-    @OneToMany(mappedBy = "usuario")
-    private List<Producto> productos;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "usuario")
     private List<Orden> ordenes;
 
@@ -106,14 +108,6 @@ public class Usuario {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public List<Producto> getProductos() {
-        return productos;
-    }
-
-    public void setProductos(List<Producto> productos) {
-        this.productos = productos;
     }
 
     public List<Orden> getOrdenes() {

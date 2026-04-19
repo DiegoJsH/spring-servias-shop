@@ -1,16 +1,22 @@
 package com.servias.shop.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.servias.shop.model.Producto;
+import com.servias.shop.model.TipoRopa;
 
 public interface ProductoService {
 
-    public Producto save(Producto producto);
+    List<Producto> findAll();
 
-    public Optional<Producto> get(Integer id);
+    List<Producto> findByTipoRopa(TipoRopa tipoRopa);
 
-    public void update(Producto producto);
+    Producto save(Producto producto);
 
-    public void delete(Integer id);
+    Optional<Producto> get(Integer id);
+
+    Producto update(Integer id, Producto producto);
+
+    void delete(Integer id);
 }

@@ -1,13 +1,17 @@
 package com.servias.shop.model;
 
 import java.util.Date;
+import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -25,8 +29,9 @@ public class Orden {
     @ManyToOne
     private Usuario usuario;
 
-    @OneToOne(mappedBy = "orden")
-    private DetalleOrden detalle;
+    @JsonIgnore
+    @OneToMany(mappedBy = "orden", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DetalleOrden> detalles;
 
     public Orden() {
     }
@@ -87,12 +92,12 @@ public class Orden {
         this.usuario = usuario;
     }
 
-    public DetalleOrden getDetalle() {
-        return detalle;
+    public List<DetalleOrden> getDetalles() {
+        return detalles;
     }
 
-    public void setDetalle(DetalleOrden detalle) {
-        this.detalle = detalle;
+    public void setDetalles(List<DetalleOrden> detalles) {
+        this.detalles = detalles;
     }
 
     @Override
