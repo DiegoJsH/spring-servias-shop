@@ -1,7 +1,18 @@
 package com.servias.shop.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "productos")
 public class Producto {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nombre;
     private String descripcion;
@@ -9,16 +20,20 @@ public class Producto {
     private Double precio;
     private Integer stock;
 
+    @ManyToOne
+    private Usuario usuario;
+
     public Producto() {
     }
 
-    public Producto(String descripcion, Integer id, String imagen, String nombre, Double precio, Integer stock) {
+    public Producto(String descripcion, Integer id, String imagen, String nombre, Double precio, Integer stock, Usuario usuario) {
         this.descripcion = descripcion;
         this.id = id;
         this.imagen = imagen;
         this.nombre = nombre;
         this.precio = precio;
         this.stock = stock;
+        this.usuario = usuario;
     }
 
     public Integer getId() {
@@ -67,6 +82,14 @@ public class Producto {
 
     public void setStock(Integer stock) {
         this.stock = stock;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     @Override
