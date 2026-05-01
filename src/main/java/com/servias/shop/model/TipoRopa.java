@@ -4,9 +4,5 @@ public enum TipoRopa {
     CAMISA,
     PANTALON,
     CHAQUETA,
-    VESTIDO,
-    FALDA,
-    ZAPATILLA,
-    ACCESORIO,
-    OTRO
+    ZAPATILLA
 }
