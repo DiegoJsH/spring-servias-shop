@@ -19,7 +19,7 @@ import com.servias.shop.model.TipoRopa;
 import com.servias.shop.service.ProductoService;
 
 @RestController
-@RequestMapping("/productos")
+@RequestMapping("/api/productos")
 public class ProductoController {
 
     private final ProductoService productoService;

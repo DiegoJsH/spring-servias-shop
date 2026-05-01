@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.servias.shop.repository.ProductoRepository;
 
 @RestController
-@RequestMapping("/administrador")
+@RequestMapping("/api/admin")
 public class AdministradorController {
 
     private final ProductoRepository productoRepository;

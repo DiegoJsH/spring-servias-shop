@@ -18,7 +18,7 @@ import com.servias.shop.model.Orden;
 import com.servias.shop.service.OrdenService;
 
 @RestController
-@RequestMapping("/ordenes")
+@RequestMapping("/api/ordenes")
 public class OrdenController {
 
     private final OrdenService ordenService;

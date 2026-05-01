@@ -17,7 +17,7 @@ import com.servias.shop.model.Usuario;
 import com.servias.shop.service.UsuarioService;
 
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("/api/usuarios")
 public class UsuarioController {
 
     private final UsuarioService usuarioService;
