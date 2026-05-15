@@ -1,0 +1,265 @@
+.tienda-header {
+  background: #f4f4f4;
+  padding: 3rem 0;
+  text-align: center;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #eee;
+}
+
+.tienda-header h1 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.tienda-header p {
+  color: #888;
+}
+
+.tienda-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* FILTROS */
+.filtros-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  margin-bottom: 40px;
+  padding: 25px;
+  background: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  flex-wrap: wrap;
+}
+
+.filtro-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.filtro-group label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.filtro-group select {
+  padding: 10px 15px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  font-size: 0.95rem;
+  background: white;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s;
+  min-width: 180px;
+}
+
+.filtro-group select:hover {
+  border-color: #e44d26;
+  background: #fff;
+}
+
+.filtro-group select:focus {
+  outline: none;
+  border-color: #e44d26;
+  box-shadow: 0 0 0 3px rgba(228, 77, 38, 0.1);
+}
+
+.filtro-info {
+  padding: 10px 15px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.productos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.producto-card {
+  position: relative;
+  background: white;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.producto-card:hover {
+  transform: translateY(-5px);
+}
+
+.producto-tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #e44d26;
+  color: white;
+  font-size: 0.7rem;
+  padding: 4px 8px;
+  z-index: 10;
+  font-weight: 700;
+  border-radius: 2px;
+}
+
+.producto-imagen {
+  position: relative;
+  height: 400px;
+  cursor: pointer;
+}
+
+.producto-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.producto-card:hover .overlay {
+  opacity: 1;
+}
+
+.overlay span {
+  background: white;
+  padding: 10px 20px;
+  color: #333;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+.producto-info {
+  padding: 1.5rem 0;
+  text-align: center;
+}
+
+.badget {
+  display: block;
+  font-size: 0.75rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+}
+
+.producto-info h3 {
+  margin: 0 0 5px 0;
+  font-size: 1.1rem;
+  color: #333;
+  cursor: pointer;
+}
+
+.talla {
+  color: #888;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.precio {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.btn-comprar {
+  background: transparent;
+  border: 1px solid #333;
+  color: #333;
+  padding: 10px 0;
+  width: 100%;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  letter-spacing: 1px;
+}
+
+.btn-comprar:hover:not(:disabled) {
+  background: #333;
+  color: white;
+}
+
+.btn-comprar:disabled {
+  border-color: #eee;
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+.descripcion {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 10px;
+  flex-grow: 1;
+}
+
+.precio {
+  font-weight: bold;
+  font-size: 1.25rem;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.badget {
+  display: inline-block;
+  background: #f0f0f0;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  margin-bottom: 15px;
+  width: fit-content;
+}
+
+.btn-comprar {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.2s;
+}
+
+.btn-comprar:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+.btn-comprar:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.loading, .error-message, .no-data {
+  text-align: center;
+  padding: 40px;
+  font-size: 1.1rem;
+}
+
+.error-message {
+  color: #dc3545;
+}

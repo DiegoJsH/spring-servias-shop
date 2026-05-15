@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.servias.shop.model.Orden;
+import com.servias.shop.dto.CartRequest;
 
 public interface OrdenService {
 
@@ -18,4 +19,6 @@ public interface OrdenService {
     Orden update(Integer id, Orden orden);
 
     void delete(Integer id);
+
+    Orden procesarCarrito(CartRequest cartRequest);
 }

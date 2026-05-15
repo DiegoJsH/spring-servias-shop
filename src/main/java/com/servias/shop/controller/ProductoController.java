@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,12 +45,14 @@ public class ProductoController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Producto> crear(@RequestBody Producto producto) {
         Producto creado = productoService.save(producto);
         return ResponseEntity.status(HttpStatus.CREATED).body(creado);
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Producto> actualizar(@PathVariable Integer id, @RequestBody Producto producto) {
         if (productoService.get(id).isEmpty()) {
             return ResponseEntity.notFound().build();
@@ -58,6 +61,7 @@ public class ProductoController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> eliminar(@PathVariable Integer id) {
         if (productoService.get(id).isEmpty()) {
             return ResponseEntity.notFound().build();

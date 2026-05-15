@@ -24,7 +24,7 @@ public class Usuario {
     private String email;
     private String direccion;
     private String telefono;
-    private String tipo;
+    private String rol;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
@@ -35,14 +35,15 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String direccion, String email, Integer id, String nombre, String password, String telefono, String tipo, String username) {
+    public Usuario(String direccion, String email, Integer id, String nombre, String password, String telefono,
+            String rol, String username) {
         this.direccion = direccion;
         this.email = email;
         this.id = id;
         this.nombre = nombre;
         this.password = password;
         this.telefono = telefono;
-        this.tipo = tipo;
+        this.rol = rol;
         this.username = username;
     }
 
@@ -94,12 +95,12 @@ public class Usuario {
         this.telefono = telefono;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getRol() {
+        return rol;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 
     public String getPassword() {
@@ -128,7 +129,7 @@ public class Usuario {
         sb.append(", email=").append(email);
         sb.append(", direccion=").append(direccion);
         sb.append(", telefono=").append(telefono);
-        sb.append(", tipo=").append(tipo);
+        sb.append(", rol=").append(rol);
         sb.append(", password=").append(password);
         sb.append('}');
         return sb.toString();

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.servias.shop.model.Orden;
 import com.servias.shop.service.OrdenService;
+import com.servias.shop.dto.CartRequest;
 
 @RestController
 @RequestMapping("/api/ordenes")
@@ -46,6 +48,51 @@ public class OrdenController {
     public ResponseEntity<Orden> crear(@RequestBody Orden orden) {
         Orden creado = ordenService.save(orden);
         return ResponseEntity.status(HttpStatus.CREATED).body(creado);
+    }
+
+    @PostMapping("/procesar")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<?> procesarCarrito(@RequestBody CartRequest cartRequest) {
+        try {
+            System.out.println("DEBUG - Carrito recibido: usuarioId=" + cartRequest.getUsuarioId() + ", items="
+                    + cartRequest.getItems().size() + ", total=" + cartRequest.getTotal());
+
+            if (cartRequest.getUsuarioId() == null) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse("usuarioId es requerido"));
+            }
+
+            if (cartRequest.getItems() == null || cartRequest.getItems().isEmpty()) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse("El carrito está vacío"));
+            }
+
+            Orden orden = ordenService.procesarCarrito(cartRequest);
+            return ResponseEntity.status(HttpStatus.CREATED).body(orden);
+        } catch (RuntimeException e) {
+            System.out.println("ERROR - " + e.getMessage());
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(e.getMessage()));
+        } catch (Exception e) {
+            System.out.println("ERROR GENERAL - " + e.getMessage());
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ErrorResponse("Error interno del servidor"));
+        }
+    }
+
+    public static class ErrorResponse {
+        private String mensaje;
+
+        public ErrorResponse(String mensaje) {
+            this.mensaje = mensaje;
+        }
+
+        public String getMensaje() {
+            return mensaje;
+        }
+
+        public void setMensaje(String mensaje) {
+            this.mensaje = mensaje;
+        }
     }
 
     @PutMapping("/{id}")

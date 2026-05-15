@@ -22,12 +22,15 @@ public class Producto {
     private Integer stock;
     @Enumerated(EnumType.STRING)
     private TipoRopa tipoRopa;
-    private String talla;
+    private String tallasDisponibles; // Formato: "XS,S,M,L,XL"
+    @Deprecated
+    private String talla; // Mantener para compatibilidad
 
     public Producto() {
     }
 
-    public Producto(String descripcion, Integer id, String imagen, String nombre, Double precio, Integer stock, TipoRopa tipoRopa, String talla) {
+    public Producto(String descripcion, Integer id, String imagen, String nombre, Double precio, Integer stock,
+            TipoRopa tipoRopa, String talla) {
         this.descripcion = descripcion;
         this.id = id;
         this.imagen = imagen;
@@ -102,6 +105,14 @@ public class Producto {
         this.talla = talla;
     }
 
+    public String getTallasDisponibles() {
+        return tallasDisponibles;
+    }
+
+    public void setTallasDisponibles(String tallasDisponibles) {
+        this.tallasDisponibles = tallasDisponibles;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -113,7 +124,7 @@ public class Producto {
         sb.append(", precio=").append(precio);
         sb.append(", stock=").append(stock);
         sb.append(", tipoRopa=").append(tipoRopa);
-        sb.append(", talla=").append(talla);
+        sb.append(", tallasDisponibles=").append(tallasDisponibles);
         sb.append('}');
         return sb.toString();
     }
