@@ -27,10 +27,10 @@ import { CarritoItem } from '../../models/carrito.model';
         <nav class="breadcrumb">
           <a routerLink="/tienda">Tienda</a> / <span>{{ producto.tipoRopa }}</span>
         </nav>
-        
+
         <h1 class="product-title">{{ producto.nombre }}</h1>
         <p class="product-price">{{ producto.precio | currency:'USD' }}</p>
-        
+
         <div class="product-description">
           <p>{{ producto.descripcion }}</p>
         </div>
@@ -57,7 +57,7 @@ import { CarritoItem } from '../../models/carrito.model';
             <input type="number" [(ngModel)]="cantidad" readonly>
             <button (click)="changeQty(1)" [disabled]="cantidad >= producto.stock">+</button>
           </div>
-          
+
           <button class="btn-add-cart" (click)="addToCart()" [disabled]="!tallaSelecionada">
             {{ anadidoAlCarrito ? 'AÑADIDO' : 'AÑADIR A LA CESTA' }}
           </button>
@@ -203,27 +203,36 @@ import { CarritoItem } from '../../models/carrito.model';
     }
 
     .quantity-selector input {
-      width: 50px;
+      width: 70px;
       text-align: center;
       border: none;
       border-left: 1px solid #ddd;
       border-right: 1px solid #ddd;
       font-weight: 600;
+      color: #333;
+      font-size: 1rem;
     }
 
     .btn-add-cart {
       flex-grow: 1;
-      background: #333;
+      background: linear-gradient(135deg, #e44d26 0%, #d63a1a 100%);
       color: white;
       border: none;
       font-weight: 700;
       letter-spacing: 1px;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(228, 77, 38, 0.3);
     }
 
-    .btn-add-cart:hover {
-      background: #000;
+    .btn-add-cart:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(228, 77, 38, 0.4);
+    }
+
+    .btn-add-cart:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
     }
 
     .shipping-info {
@@ -296,13 +305,13 @@ export class ProductoDetalleComponent implements OnInit, OnDestroy {
           this.cantidad = 1;
           this.tallaSelecionada = '';
           this.anadidoAlCarrito = false;
-          
+
           if (data.tallasDisponibles) {
             this.tallasList = data.tallasDisponibles.split(',').map(t => t.trim());
           } else if (data.talla) {
             this.tallasList = [data.talla];
           }
-          
+
           this.loading = false;
           this.error = '';
           this.cdr.markForCheck();

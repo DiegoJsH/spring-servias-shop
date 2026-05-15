@@ -139,7 +139,7 @@ import { Carrito, CarritoItem } from '../../models/carrito.model';
     }
 
     .cantidad-control input {
-      width: 40px;
+      width: 70px;
       border: none;
       text-align: center;
       border-left: 1px solid #ddd;

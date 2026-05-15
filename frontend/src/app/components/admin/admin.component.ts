@@ -28,7 +28,7 @@ import { Producto } from '../../models/api.models';
 
         <div *ngIf="mostrarFormulario" class="formulario-producto">
           <h2>{{ editando ? 'Editar Producto' : 'Nuevo Producto' }}</h2>
-          
+
           <form (ngSubmit)="guardarProducto()">
             <div class="form-group">
               <label>Nombre</label>
@@ -184,14 +184,16 @@ import { Producto } from '../../models/api.models';
     }
 
     .btn-editar {
-      background: #007bff;
+      background: #e44d26;
       color: white;
       padding: 5px 10px;
       font-size: 0.85rem;
+      transition: all 0.2s ease;
     }
 
     .btn-editar:hover {
-      background: #0056b3;
+      background: #d63a1a;
+      transform: translateY(-1px);
     }
 
     .btn-eliminar {
