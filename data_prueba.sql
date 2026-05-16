@@ -1,6 +1,4 @@
 -- Insertar datos de prueba para productos
--- PostgreSQL convierte automáticamente los identificadores a minúsculas si no se usan comillas dobles.
--- Por lo tanto, aunque en Java sea "tipoRopa", en la DB es "tiporopa" (todo minúsculas).
 INSERT INTO productos (nombre, descripcion, precio, stock, imagen, tiporopa, talla) VALUES
 ('Camiseta Casual Blanca', 'Camiseta de algodón 100% ideal para el día a día.', 19.99, 50, 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500', 'CAMISA', 'M'),
 ('Camiseta Premium Negra', 'Camiseta premium de algodón puro con acabado perfecto.', 24.99, 35, 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500', 'CAMISA', 'L'),
@@ -27,7 +25,7 @@ INSERT INTO productos (nombre, descripcion, precio, stock, imagen, tiporopa, tal
 ('Tenis Clásicos Beige', 'Zapatillas clásicas minimalistas estilo retro.', 54.50, 25, 'https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=500', 'ZAPATILLA', '40'),
 ('Botines de Cuero Negros', 'Botines de cuero genuino elegantes y resistentes.', 85.00, 12, 'https://images.unsplash.com/photo-1543163521-9eae66b6b556?w=500', 'ZAPATILLA', '42');
 
-
+-- Para el administrador
 INSERT INTO usuarios (username, password, email, rol) 
 VALUES ('admin', '$2a$10$9P6q.wBqbSIztx0NSTHyheWwRWlGQ9/Zs72orBCu53aF80RJL3qRC', 'admin@servias.com', 'ADMIN');
 
